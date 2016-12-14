@@ -1,7 +1,9 @@
 import argparse
 import os
-from send import sendMessage
 from channels import getChannels
+from send import sendMessage
+from users import getUsers
+
 
 if __name__ == '__main__':
     
@@ -36,3 +38,8 @@ if __name__ == '__main__':
 #    elif args.list:
     if args.channels:
         getChannels(token)
+    elif args.users:
+        getUsers(token)
+    elif args.all:
+        getChannels(token)
+        getUsers(token)

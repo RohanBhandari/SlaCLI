@@ -1,7 +1,6 @@
-import json
-import os
 import requests
 from errors import checkErrors
+from utilities import colors
 
 def getChannels(token, verbose=True):
     payload={'token':token, 'exclude_archived':'1'}
@@ -11,7 +10,7 @@ def getChannels(token, verbose=True):
     checkErrors(data)
 
     channelMap = dict()
-    if verbose: print('\033[95m'+'=== Channels ==='+'\033[0m')
+    if verbose: print(colors.HEADER+'=== Channels ==='+colors.ENDC)
     for i in range(len(data['channels'])):
         if verbose: print(data['channels'][i]['name'])
         channelMap[data['channels'][i]['name']] = data['channels'][i]['id']

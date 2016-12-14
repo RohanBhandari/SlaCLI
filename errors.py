@@ -1,7 +1,8 @@
 import sys
+from utilities import colors
 
 def checkErrors(error):
-    if error['ok'] == False: sys.exit('\033[31m'+'Error: ' + error['error'] + '\033[0m')
+    if error['ok'] == False: sys.exit(colors.RED + 'Error: ' + error['error'] + colors.ENDC)
 
 
 
