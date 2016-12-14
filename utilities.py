@@ -1,3 +1,9 @@
+class colors:
+    HEADER = '\033[95m'
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    ENDC = '\033[0m'    
+
 def printTable(info, header=True):
 
     row_format = ''
@@ -9,11 +15,6 @@ def printTable(info, header=True):
         if header and i==0: print(colors.HEADER+row_format.format(*info[i])+colors.ENDC)
         else: print(row_format.format(*info[i]))
 
-
-class colors:
-    HEADER = '\033[95m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    ENDC = '\033[0m'    
-
-    
+def reverseMap(map):
+    reversedMap = {v: k for k, v in map.items()}
+    return reversedMap

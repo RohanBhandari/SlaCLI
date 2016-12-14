@@ -16,3 +16,16 @@ def getChannels(token, verbose=True):
         channelMap[data['channels'][i]['name']] = data['channels'][i]['id']
 
     return(channelMap)
+
+def getIMs(token):
+    payload={'token':token, 'exclude_archived':'1'}
+    r=requests.get('https://slack.com/api/im.list', params=payload)
+
+    data = r.json()
+    checkErrors(data)
+
+    imMap = dict()
+    for i in range(len(data['ims'])):
+        imMap[data['ims'][i]['user']] = data['ims'][i]['id']
+
+    return(imMap)
