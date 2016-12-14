@@ -36,7 +36,7 @@ def readIM(token, user, count='10'):
     userIdMap = reverseMap(userMap)
     imMap = getIMs(token)
 
-    if userMap[user] not in imMap: sys.exit(colors.RED+'Error: '+user+' is not a valid user'+colors.ENDC)
+    if user not in userMap: sys.exit(colors.RED+'Error: '+user+' is not a valid user'+colors.ENDC)
 
     payload={'token':token, 'channel':imMap[userMap[user]], 'count':count}
     r=requests.get('https://slack.com/api/im.history', params=payload)
