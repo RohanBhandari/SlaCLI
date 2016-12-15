@@ -12,7 +12,6 @@ def readMessages(token, channel, count='10'):
     if channel[0] == '@': readIM(token, channel, count)
     else: readChannel(token, channel, count)
 
-
 def readChannel(token, channel, count='10'):
     channelMap = getChannels(token, False)
     userIdMap = reverseMap(getUsers(token, False))
@@ -26,8 +25,12 @@ def readChannel(token, channel, count='10'):
     checkErrors(data)
 
     info=[]
+    prevUser=''
     for i in range(int(count)):
-        info.append([userIdMap[data['messages'][i]['user']], data['messages'][i]['text']])
+        user = data['messages'][i]['user']
+        newline=''
+        if user != prevUser: newline, prevUser = '\n', user
+        info.append([userIdMap[user], data['messages'][i]['text']+newline])
 
     printTable(list(reversed(info)), False)
     
