@@ -5,6 +5,7 @@ from channels import getIMs
 from errors import checkErrors
 from users import getUsers
 from utilities import colors
+from utilities import makeColorMap
 from utilities import printTable
 from utilities import reverseMap
 
@@ -15,6 +16,7 @@ def readMessages(token, channel, count='10'):
 def readChannel(token, channel, count='10'):
     channelMap = getChannels(token, False)
     userIdMap = reverseMap(getUsers(token, False))
+    colorMap = makeColorMap(userIdMap)
 
     if channel not in channelMap: sys.exit(colors.RED+'Error: '+channel+' is not a valid channel'+colors.ENDC)
 
@@ -28,15 +30,17 @@ def readChannel(token, channel, count='10'):
     prevUser=''
     for i in range(int(count)):
         user = data['messages'][i]['user']
-        newline=''
+        newline = ''
         if user != prevUser: newline, prevUser = '\n', user
-        info.append([userIdMap[user], data['messages'][i]['text']+newline])
+
+        info.append([colorMap[user]+userIdMap[user]+colors.ENDC, data['messages'][i]['text']+newline])
 
     printTable(list(reversed(info)), False)
     
 def readIM(token, user, count='10'):
     userMap = getUsers(token, False)
     userIdMap = reverseMap(userMap)
+    colorMap = makeColorMap(userIdMap)
     imMap = getIMs(token)
 
     if user not in userMap: sys.exit(colors.RED+'Error: '+user+' is not a valid user'+colors.ENDC)
@@ -48,7 +52,11 @@ def readIM(token, user, count='10'):
     checkErrors(data)
 
     info=[]
+    prevUser=''
     for i in range(int(count)):
-        info.append([userIdMap[data['messages'][i]['user']], data['messages'][i]['text']])
+        user = data['messages'][i]['user']
+        newline=''
+        if user != prevUser: newline, prevUser = '\n', user
+        info.append([colorMap[user]+userIdMap[user]+colors.ENDC, data['messages'][i]['text']+newline])
 
     printTable(list(reversed(info)), False)

@@ -4,6 +4,8 @@ class colors:
     GREEN = '\033[32m'
     ENDC = '\033[0m'
 
+    list = ['\033[34m','\033[35m','\033[32m','\033[33m','\033[34m','\033[31m','\033[36m','\033[30m']
+
 def printTable(info, header=True):
 
     row_format = ''
@@ -31,3 +33,7 @@ def printTable(info, header=True):
 def reverseMap(map):
     reversedMap = {v: k for k, v in map.items()}
     return reversedMap
+
+def makeColorMap(map):    
+    colorMap = {map.keys()[i] : colors.list[i % len(colors.list)] for i in range(len(map.keys()))}
+    return colorMap
