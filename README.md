@@ -7,9 +7,9 @@ A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack ch
   * [Read](#read)
   * [Send](#send)
 * [Installation](#installation)
-* [Suggested shortcuts](#suggested-shortcuts)
+* [Suggested Shortcuts](#suggested-shortcuts)
 
-![Alt text](/example/example.jpg?raw=true "SlaCLI in motion!")
+![Alt text](/../example/example.jpg?raw=true "SlaCLI in motion!")
 
 ## Usage
 SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
@@ -85,7 +85,7 @@ The only dependency needed is [requests](http://docs.python-requests.org/en/mast
 pip install requests
 ```
 
-##Suggested shortcuts
+##Suggested Shortcuts
 To make using SlaCLI easier, here are some suggested shortcuts to use:
 ```
 alias sl='python ~/PATH/SlaCLI/slacli.py list'
