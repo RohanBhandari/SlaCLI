@@ -9,6 +9,8 @@ A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack ch
 * [Installation](#installation)
 * [Suggested shortcuts](#suggested-shortcuts)
 
+![Alt text](/example/example.jpg?raw=true "SlaCLI in motion!")
+
 ## Usage
 SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
 
@@ -48,7 +50,7 @@ For channels, simply provide the channel name, while for users, use their userna
 By default, SlaCLI will show the last ten messages, unless a value for `num` is specified.
 
 ```
-usage: slacli.py read [-h] [-u UNREAD] channel num
+usage: slacli.py read [-h] [-u UNREAD] channel [num]
 
 positional arguments:
   channel               The channel or user to read from
