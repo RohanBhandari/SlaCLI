@@ -2,12 +2,12 @@
 
 A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack channels from the command line!
 
-* [Usage](Usage)
-  * [List](List)
-  * [Read](Read)
-  * [Send](Send)
-* [Installation](Installation)
-* [Suggested shortcuts](Suggested-shortcuts)
+* [Usage](#usage)
+  * [List](#list)
+  * [Read](#read)
+  * [Send](#send)
+* [Installation](#installation)
+* [Suggested shortcuts](#suggested-shortcuts)
 
 ## Usage
 SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
