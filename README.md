@@ -9,7 +9,7 @@ A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack ch
 * [Installation](#installation)
 * [Suggested Shortcuts](#suggested-shortcuts)
 
-![Alt text](/../example/example.jpg?raw=true "SlaCLI in motion!")
+![Alt text](/../images/images/example.jpg?raw=true "SlaCLI in motion!")
 
 ## Usage
 SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
