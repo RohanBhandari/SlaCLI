@@ -2,8 +2,15 @@
 
 A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack channels from the command line!
 
+* [Usage](Usage)
+  * [List](List)
+  * [Read](Read)
+  * [Send](Send)
+* [Installation](Installation)
+* [Suggested shortcuts](Suggested-shortcuts)
+
 ## Usage
-SlaCLI is divided into three main functionalities: list, read, and send. 
+SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
 
 ```
 usage: slacli.py [-h] [-t TOKEN] {list,read,send} ...
@@ -23,7 +30,8 @@ Commands:
 ```
 
 ###List
-Using `./slacli.py list` will print your Slack team's public channels followed by the team users and their online presence. Adding the `-c` or `-u` flag will limit the output to only the channels or users, respectively.
+Using `./slacli.py list` will print your Slack team's public channels followed by the team users and their online presence. 
+Adding the `-c` or `-u` flag will limit the output to only channels or users, respectively.
 
 ```
 usage: slacli.py list [-h] [-c | -u]
@@ -35,7 +43,9 @@ optional arguments:
 ```
   
 ###Read
-Using `./slacli.py read [channel] [num]` will print recent messages from a channel or direct messages with another user. For channels, simply provide the channel name, while for users, use their username (including the "@"). By default, SlaCLI will show the last ten messages, unless a value for `num` is specified.
+Using `./slacli.py read [channel] [num]` will print recent messages from a channel or direct messages with another user. 
+For channels, simply provide the channel name, while for users, use their username (including the "@"). 
+By default, SlaCLI will show the last ten messages, unless a value for `num` is specified.
 
 ```
 usage: slacli.py read [-h] [-u UNREAD] channel num
@@ -51,7 +61,9 @@ optional arguments:
 ```
 
 ###Send
-Using `./slacli.py send [channel] [message]` will send a message to a channel or directly to a user. The same convention applies for `channel` as stated for the read functionality. The `message` argument can be provided as a string using either single or double quotes.
+Using `./slacli.py send [channel] [message]` will send a message to a channel or directly to a user. 
+The same convention applies for `channel` as stated for the read functionality. 
+The `message` argument can be provided as a string using either single or double quotes.
 
 ```
 usage: slacli.py send [-h] channel message
@@ -62,4 +74,29 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
+```
+
+##Installation 
+Simply clone the SlaCLI repository!
+The only dependency needed is [requests](http://docs.python-requests.org/en/master/), which can be easily installed with pip:
+```
+pip install requests
+```
+
+##Suggested shortcuts
+To make using SlaCLI easier, here are some suggested shortcuts to use:
+```
+alias sl='python ~/PATH/SlaCLI/slacli.py list'
+```
+```
+alias sr='python ~/PATH/SlaCLI/slacli.py read'
+```
+```
+alias ss='python ~/PATH/SlaCLI/slacli.py send'
+```
+```
+alias srg='python ~/PATH/SlaCLI/slacli.py read general'
+```
+```
+alias ssb='python ~/PATH/SlaCLI/slacli.py send @bob'
 ```
