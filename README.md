@@ -6,10 +6,10 @@ A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack ch
   * [List](#list)
   * [Read](#read)
   * [Send](#send)
-* [Installation](#installation)
-* [Suggested shortcuts](#suggested-shortcuts)
+* [Setup](#setup)
+* [Suggested Shortcuts](#suggested-shortcuts)
 
-![Alt text](/example/example.jpg?raw=true "SlaCLI in motion!")
+![Alt text](/../images/images/example.jpg?raw=true "SlaCLI in motion!")
 
 ## Usage
 SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
@@ -78,14 +78,17 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
-##Installation 
-Simply clone the SlaCLI repository!
-The only dependency needed is [requests](http://docs.python-requests.org/en/master/), which can be easily installed with pip:
-```
-pip install requests
-```
+##Setup
+SlaCLI can be setup in 3 steps.
 
-##Suggested shortcuts
+1. Simply clone the SlaCLI repository
+2. Install [requests](http://docs.python-requests.org/en/master/), which can be done easily with pip:
+`pip install requests`
+3. Slack requires a personal token in order to access information from your account. You can obtain one easily from https://api.slack.com/docs/oauth-test-tokens. You will need one per Slack team you want to access.
+
+It is recommended to set the variable `SLACK_TOKEN` to your token. By default, SlaCLI will use this as the token. If you want to use multiple tokens (for multiple Slack teams) or not store your token, you can specify the token to use with the `-t` flag.
+
+##Suggested Shortcuts
 To make using SlaCLI easier, here are some suggested shortcuts to use:
 ```
 alias sl='python ~/PATH/SlaCLI/slacli.py list'
