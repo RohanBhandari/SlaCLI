@@ -45,12 +45,12 @@ optional arguments:
 ```
   
 ###Read
-Using `./slacli.py read [channel] [num]` will print recent messages from a channel or direct messages with another user. 
+Using `./slacli.py read CHANNEL NUM` will print recent messages from a channel or direct messages with another user. 
 For channels, simply provide the channel name, while for users, use their username (including the "@"). 
-By default, SlaCLI will show the last ten messages, unless a value for `num` is specified.
+By default, SlaCLI will show the last ten messages, unless a value for `NUM` is specified.
 
 ```
-usage: slacli.py read [-h] [-u UNREAD] channel [num]
+usage: slacli.py read [-h] channel [num]
 
 positional arguments:
   channel               The channel or user to read from
@@ -58,14 +58,12 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -u UNREAD, --unread UNREAD
-                        Show only unread messages
 ```
 
 ###Send
-Using `./slacli.py send [channel] [message]` will send a message to a channel or directly to a user. 
-The same convention applies for `channel` as stated for the read functionality. 
-The `message` argument can be provided as a string using either single or double quotes.
+Using `./slacli.py send CHANNEL MESSAGE` will send a message to a channel or directly to a user. 
+The same convention applies for `CHANNEL` as stated for the read functionality. 
+The `MESSAGE` argument can be provided as a string using either single or double quotes.
 
 ```
 usage: slacli.py send [-h] channel message
