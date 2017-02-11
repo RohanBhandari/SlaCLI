@@ -9,25 +9,35 @@ from utilities import makeColorMap
 from utilities import printTable
 from utilities import reverseMap
 
-def readMessages(token, channel, count='10'):
-    if channel[0] == '@': readIM(token, channel, count)
-    else: readChannel(token, channel, count)
+def readMessages(token, channel, count='10', unread=False):
+    #Check whether to read channel or IM and use appropriate method
+    if channel[0] == '@': readIM(token, channel, count, unread)
+    else: readChannel(token, channel, count, unread)
 
-def readChannel(token, channel, count='10'):
+def readChannel(token, channel, count='10', unread=False):
+    #Get necessary information
     channelMap = getChannels(token, False)
     userIdMap = reverseMap(getUsers(token, False))
     colorMap = makeColorMap(userIdMap)
 
+    #Check if channel is valid
     if channel not in channelMap: sys.exit(colors.RED+'Error: '+channel+' is not a valid channel'+colors.ENDC)
+    #If only want unread messages, get enough messages to be a superset of the unread messages
+    if unread: count = 200
 
-    payload={'token':token, 'channel':channelMap[channel], 'count':count}
+    #Setup and send request
+    payload={'token':token, 'channel':channelMap[channel], 'count':count, 'unreads':'true'}
     r=requests.get('https://slack.com/api/channels.history', params=payload)
-
     data=r.json()
     checkErrors(data)
 
-    info=[]
-    prevUser=''
+    #If only want unread messages, set count to number of unread messages
+    if unread: 
+        count = int(data['unread_count_display'])
+        if count==0: sys.exit(colors.GREEN + 'No unread messages' + colors.ENDC)
+
+    #Get messsage information
+    info, prevUser = [], ''
     for i in range(int(count)):
         user, message = '', ''
         if 'user' in data['messages'][i]: 
@@ -45,28 +55,39 @@ def readChannel(token, channel, count='10'):
 
         info.append([colorMap[user]+userIdMap[user]+colors.ENDC, message+newline])
 
+    #Print information
     printTable(list(reversed(info)), False)
     
-def readIM(token, user, count='10'):
+def readIM(token, user, count='10', unread=False):
+    #Get necessary information
     userMap = getUsers(token, False)
     userIdMap = reverseMap(userMap)
     colorMap = makeColorMap(userIdMap)
     imMap = getIMs(token)
 
+    #Check if username is valid
     if user not in userMap: sys.exit(colors.RED+'Error: '+user+' is not a valid user'+colors.ENDC)
+    #If only want unread messages, get enough messages to be a superset of the unread messages
+    if unread: count = 200
 
-    payload={'token':token, 'channel':imMap[userMap[user]], 'count':count}
+    #Setup and send request
+    payload={'token':token, 'channel':imMap[userMap[user]], 'count':count, 'unreads':'true'}
     r=requests.get('https://slack.com/api/im.history', params=payload)
-
     data=r.json()
     checkErrors(data)
 
-    info=[]
-    prevUser=''
+    #If only want unread messages, set count to number of unread messages
+    if unread: 
+        count = int(data['unread_count_display'])
+        if count==0: sys.exit(colors.GREEN + 'No unread messages' + colors.ENDC)
+
+    #Get messsage information
+    info, prevUser = [], ''
     for i in range(int(count)):
         user = data['messages'][i]['user']
         newline=''
         if user != prevUser: newline, prevUser = '\n', user
         info.append([colorMap[user]+userIdMap[user]+colors.ENDC, data['messages'][i]['text']+newline])
 
+    #Print information
     printTable(list(reversed(info)), False)
