@@ -12,7 +12,7 @@ class colors:
     grey = '\033[37m'
     endc = '\033[0m'
 
-    list = [blue, red, green, grey, brown, grey, purple, cyan]
+    list = [blue, purple, green, grey, brown, grey, red, cyan]
 
 def printTable(info, header=True):
 
