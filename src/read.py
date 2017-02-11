@@ -1,10 +1,10 @@
 import requests
 import sys
-from channels import getChannels
-from channels import getIMs
-from errors import checkErrors
-from users import getUsers
+from list import getChannels
+from list import getIMs
+from list import getUsers
 from utilities import colors
+from utilities import checkErrors
 from utilities import makeColorMap
 from utilities import printTable
 from utilities import reverseMap

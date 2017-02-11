@@ -3,11 +3,11 @@
 import argparse
 from argparse import ArgumentDefaultsHelpFormatter
 import os
-from src.channels import getChannels
+from src.list import getChannels
+from src.list import getUsers
 from src.read import readMessages
 from src.send import sendFile
 from src.send import sendMessage
-from src.users import getUsers
 
 if __name__ == '__main__':
     

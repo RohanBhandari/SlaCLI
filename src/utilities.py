@@ -1,3 +1,5 @@
+import sys
+
 class colors:
     HEADER = '\033[95m'
     RED = '\033[31m'
@@ -37,3 +39,6 @@ def reverseMap(map):
 def makeColorMap(map):    
     colorMap = {map.keys()[i] : colors.list[i % len(colors.list)] for i in range(len(map.keys()))}
     return colorMap
+
+def checkErrors(error):
+    if error['ok'] == False: sys.exit(colors.RED + 'Error: ' + error['error'] + colors.ENDC)
