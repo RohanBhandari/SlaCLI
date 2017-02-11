@@ -11,7 +11,7 @@ def getChannels(token, verbose=True):
     checkErrors(data)
 
     channelMap = dict()
-    if verbose: print(colors.HEADER+'=== Channels ==='+colors.ENDC)
+    if verbose: print(colors.header+'=== Channels ==='+colors.endc)
     for i in range(len(data['channels'])):
         if verbose: print(data['channels'][i]['name'])
         channelMap[data['channels'][i]['name']] = data['channels'][i]['id']
@@ -48,8 +48,8 @@ def getUsers(token, verbose=True):
 
     if verbose:
         for row in info:
-            if row[2] == 'active': row[2] = colors.GREEN+row[2]+colors.ENDC
-            elif row[2] == 'away': row[2] = colors.RED+row[2]+colors.ENDC
+            if row[2] == 'active': row[2] = colors.green+row[2]+colors.endc
+            elif row[2] == 'away': row[2] = colors.red+row[2]+colors.endc
                     
         printTable(info)
         

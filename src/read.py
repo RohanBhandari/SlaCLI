@@ -21,7 +21,7 @@ def readChannel(token, channel, count='10', unread=False):
     colorMap = makeColorMap(userIdMap)
 
     #Check if channel is valid
-    if channel not in channelMap: sys.exit(colors.RED+'Error: '+channel+' is not a valid channel'+colors.ENDC)
+    if channel not in channelMap: sys.exit(colors.red+'Error: '+channel+' is not a valid channel'+colors.endc)
     #If only want unread messages, get enough messages to be a superset of the unread messages
     if unread: count = 200
 
@@ -34,7 +34,7 @@ def readChannel(token, channel, count='10', unread=False):
     #If only want unread messages, set count to number of unread messages
     if unread: 
         count = int(data['unread_count_display'])
-        if count==0: sys.exit(colors.GREEN + 'No unread messages' + colors.ENDC)
+        if count==0: sys.exit(colors.green + 'No unread messages' + colors.endc)
 
     #Get messsage information
     info, prevUser = [], ''
@@ -47,13 +47,13 @@ def readChannel(token, channel, count='10', unread=False):
             user = 'BOT'
             message = data['messages'][i]['attachments'][0]['text']
         else:
-            print(colors.RED + 'Error: Could not read message. Skipping.' + colors.ENDC)
+            print(colors.red + 'Error: Could not read message. Skipping.' + colors.endc)
             continue
 
         newline = ''
         if user != prevUser: newline, prevUser = '\n', user
 
-        info.append([colorMap[user]+userIdMap[user]+colors.ENDC, message+newline])
+        info.append([colorMap[user]+userIdMap[user]+colors.endc, message+newline])
 
     #Print information
     printTable(list(reversed(info)), False)
@@ -66,7 +66,7 @@ def readIM(token, user, count='10', unread=False):
     imMap = getIMs(token)
 
     #Check if username is valid
-    if user not in userMap: sys.exit(colors.RED+'Error: '+user+' is not a valid user'+colors.ENDC)
+    if user not in userMap: sys.exit(colors.red+'Error: '+user+' is not a valid user'+colors.endc)
     #If only want unread messages, get enough messages to be a superset of the unread messages
     if unread: count = 200
 
@@ -79,7 +79,7 @@ def readIM(token, user, count='10', unread=False):
     #If only want unread messages, set count to number of unread messages
     if unread: 
         count = int(data['unread_count_display'])
-        if count==0: sys.exit(colors.GREEN + 'No unread messages' + colors.ENDC)
+        if count==0: sys.exit(colors.green + 'No unread messages' + colors.endc)
 
     #Get messsage information
     info, prevUser = [], ''
@@ -87,7 +87,7 @@ def readIM(token, user, count='10', unread=False):
         user = data['messages'][i]['user']
         newline=''
         if user != prevUser: newline, prevUser = '\n', user
-        info.append([colorMap[user]+userIdMap[user]+colors.ENDC, data['messages'][i]['text']+newline])
+        info.append([colorMap[user]+userIdMap[user]+colors.endc, data['messages'][i]['text']+newline])
 
     #Print information
     printTable(list(reversed(info)), False)

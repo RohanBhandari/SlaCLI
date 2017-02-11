@@ -1,12 +1,18 @@
 import sys
 
 class colors:
-    HEADER = '\033[95m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    ENDC = '\033[0m'
+    header = '\033[95m'
+    black = '\033[30m'
+    blue = '\033[34m'    
+    green = '\033[32m'
+    cyan = '\033[36m'
+    red = '\033[31m'
+    purple = '\033[35m'
+    brown = '\033[33m'
+    grey = '\033[37m'
+    endc = '\033[0m'
 
-    list = ['\033[34m','\033[35m','\033[32m','\033[33m','\033[34m','\033[31m','\033[36m','\033[30m']
+    list = [blue, red, green, grey, brown, grey, purple, cyan]
 
 def printTable(info, header=True):
 
@@ -18,7 +24,7 @@ def printTable(info, header=True):
 
     for i in range(len(info)):
         if header and i==0: 
-            print(colors.HEADER+row_format.format(*info[i])+colors.ENDC)
+            print(colors.header+row_format.format(*info[i])+colors.endc)
         else:
             try:
                 print(row_format.format(*info[i]))
@@ -41,4 +47,4 @@ def makeColorMap(map):
     return colorMap
 
 def checkErrors(error):
-    if error['ok'] == False: sys.exit(colors.RED + 'Error: ' + error['error'] + colors.ENDC)
+    if error['ok'] == False: sys.exit(colors.red + 'Error: ' + error['error'] + colors.endc)
