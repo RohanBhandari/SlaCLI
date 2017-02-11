@@ -29,11 +29,21 @@ def readChannel(token, channel, count='10'):
     info=[]
     prevUser=''
     for i in range(int(count)):
-        user = data['messages'][i]['user']
+        user, message = '', ''
+        if 'user' in data['messages'][i]: 
+            user = data['messages'][i]['user']
+            message = data['messages'][i]['text']
+        elif 'bot_id' in data['messages'][i]:
+            user = 'BOT'
+            message = data['messages'][i]['attachments'][0]['text']
+        else:
+            print(colors.RED + 'Error: Could not read message. Skipping.' + colors.ENDC)
+            continue
+
         newline = ''
         if user != prevUser: newline, prevUser = '\n', user
 
-        info.append([colorMap[user]+userIdMap[user]+colors.ENDC, data['messages'][i]['text']+newline])
+        info.append([colorMap[user]+userIdMap[user]+colors.ENDC, message+newline])
 
     printTable(list(reversed(info)), False)
     

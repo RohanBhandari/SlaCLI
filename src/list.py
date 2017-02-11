@@ -44,6 +44,7 @@ def getUsers(token, verbose=True):
     for i in range(len(data['members'])-1):
         info.append(['@'+data['members'][i]['name'], data['members'][i]['real_name'], data['members'][i]['presence']])
         userMap['@'+data['members'][i]['name']] = data['members'][i]['id']
+    userMap['BOT'] = 'BOT'
 
     if verbose:
         for row in info:
