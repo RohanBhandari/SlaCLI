@@ -5,6 +5,7 @@ from argparse import ArgumentDefaultsHelpFormatter
 import os
 from src.channels import getChannels
 from src.read import readMessages
+from src.send import sendFile
 from src.send import sendMessage
 from src.users import getUsers
 
@@ -26,7 +27,8 @@ if __name__ == '__main__':
 
     parser_s = subparsers.add_parser('send', help='Send a message')
     parser_s.add_argument('channel', help='The channel or user to send the message to')
-    parser_s.add_argument('message', help='The message text')
+    parser_s.add_argument('message', nargs='?', help='The message text')
+    parser_s.add_argument('-f','--file', help='The file to upload')
     
     args=parser.parse_args()
 
@@ -43,5 +45,6 @@ if __name__ == '__main__':
     elif args.subparser_name == 'read':
         readMessages(token, args.channel, args.num)
 
-    elif args.subparser_name == 'send':        
-         sendMessage(token, args.channel, args.message)
+    elif args.subparser_name == 'send':
+        if args.file: sendFile(token, args.channel, args.message, args.file)
+        else: sendMessage(token, args.channel, args.message)
