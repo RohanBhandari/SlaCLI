@@ -55,15 +55,18 @@ def readChannel(token, channel, count='10', unread=False):
 
         info.append([colorMap[user]+userIdMap[user]+colors.endc, message+newline])
 
-    #Print information
     printTable(list(reversed(info)), False)
     
+    markChannelRead(token, channelMap[channel], data['messages'][0]['ts'])
+
 def readIM(token, user, count='10', unread=False):
     #Get necessary information
     userMap = getUsers(token, False)
     userIdMap = reverseMap(userMap)
     colorMap = makeColorMap(userIdMap)
     imMap = getIMs(token)
+    
+    orig_user = user
 
     #Check if username is valid
     if user not in userMap: sys.exit(colors.red+'Error: '+user+' is not a valid user'+colors.endc)
@@ -71,7 +74,7 @@ def readIM(token, user, count='10', unread=False):
     if unread: count = 200
 
     #Setup and send request
-    payload={'token':token, 'channel':imMap[userMap[user]], 'count':count, 'unreads':'true'}
+    payload={'token':token, 'channel':imMap[userMap[orig_user]], 'count':count, 'unreads':'true'}
     r=requests.get('https://slack.com/api/im.history', params=payload)
     data=r.json()
     checkErrors(data)
@@ -89,5 +92,14 @@ def readIM(token, user, count='10', unread=False):
         if user != prevUser: newline, prevUser = '\n', user
         info.append([colorMap[user]+userIdMap[user]+colors.endc, data['messages'][i]['text']+newline])
 
-    #Print information
     printTable(list(reversed(info)), False)
+
+    markIMRead(token, imMap[userMap[orig_user]], data['messages'][0]['ts'])
+
+def markChannelRead(token, channel, timestamp):
+    payload={'token':token, 'channel':channel,'ts':timestamp}
+    r=requests.post('https://slack.com/api/channels.mark', params=payload)
+
+def markIMRead(token, channel, timestamp):
+    payload={'token':token, 'channel':channel,'ts':timestamp}
+    r=requests.post('https://slack.com/api/im.mark', params=payload)
