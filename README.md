@@ -48,16 +48,18 @@ optional arguments:
 Using `./slacli.py read CHANNEL NUM` will print recent messages from a channel or direct messages with another user. 
 For channels, simply provide the channel name, while for users, use their username (including the "@"). 
 By default, SlaCLI will show the last ten messages, unless a value for `NUM` is specified.
+Using the `-u` flag will instead show all unread messages in the channel.
 
 ```
-usage: slacli.py read [-h] channel [num]
+usage: slacli.py read [-h] [-u] channel [num]
 
 positional arguments:
-  channel               The channel or user to read from
-  num                   Number of messages to display. Default is 10
+  channel       The channel or user to read from
+  num           Number of messages to display. Default is 10
 
 optional arguments:
-  -h, --help            show this help message and exit
+  -h, --help    show this help message and exit
+  -u, --unread  Show only unread messages
 ```
 
 ###Send

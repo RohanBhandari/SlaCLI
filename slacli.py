@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     parser_r = subparsers.add_parser('read', help='Read messages from a channel')
     parser_r.add_argument('channel', help='The channel or user to read from')
-    parser_r.add_argument('-u', '--unread', action='store_true', help='Show only unread messages')
+    parser_r.add_argument('-u', '--unread', action='store_true', help='Show all unread messages')
     parser_r.add_argument('num', nargs='?', default='10', help='Number of messages to display. Default is 10')
 
     parser_s = subparsers.add_parser('send', help='Send a message')
