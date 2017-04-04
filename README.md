@@ -11,7 +11,7 @@ A Command Line Interface (CLI) for Slack -- read, send, and manage your Slack ch
 
 ![Alt text](/../images/images/example.jpg?raw=true "SlaCLI in motion!")
 
-## Usage
+### Usage
 SlaCLI is divided into three main functionalities: `list`, `read`, and `send`. 
 
 ```
@@ -31,7 +31,7 @@ Commands:
     send                Send a message
 ```
 
-###List
+### List
 Using `./slacli.py list` will print your Slack team's public channels followed by the team users and their online presence. 
 Adding the `-c` or `-u` flag will limit the output to only channels or users, respectively.
 
@@ -44,7 +44,7 @@ optional arguments:
   -u, --users     List only users
 ```
   
-###Read
+### Read
 Using `./slacli.py read CHANNEL NUM` will print recent messages from a channel or direct messages with another user. 
 For channels, simply provide the channel name, while for users, use their username (including the "@"). 
 By default, SlaCLI will show the last ten messages, unless a value for `NUM` is specified.
@@ -62,7 +62,7 @@ optional arguments:
   -u, --unread  Show only unread messages
 ```
 
-###Send
+### Send
 Using `./slacli.py send CHANNEL MESSAGE` will send a message to a channel or directly to a user. 
 The same convention applies for `CHANNEL` as stated for the read functionality. 
 The `MESSAGE` argument can be provided as a string using either single or double quotes.
@@ -81,7 +81,7 @@ optional arguments:
   -f FILE, --file FILE  The file to upload
 ```
 
-##Setup
+### Setup
 SlaCLI can be setup in 3 steps.
 
 1. Simply clone the SlaCLI repository
@@ -91,7 +91,7 @@ SlaCLI can be setup in 3 steps.
 
 It is recommended to set your token to the variable `SLACK_TOKEN`. By default, SlaCLI will use this as the token. If you want to use multiple tokens (for multiple Slack teams) or to not store your token, you can specify the token to use with the `-t` flag.
 
-##Suggested Shortcuts
+### Suggested Shortcuts
 To make using SlaCLI easier, here are some suggested shortcuts to use:
 ```
 alias sl='python ~/PATH/SlaCLI/slacli.py list'
