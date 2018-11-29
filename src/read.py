@@ -1,13 +1,13 @@
 import requests
 import sys
-from list import getChannels
-from list import getIMs
-from list import getUsers
-from utilities import colors
-from utilities import checkErrors
-from utilities import makeColorMap
-from utilities import printTable
-from utilities import reverseMap
+from .list import getChannels
+from .list import getIMs
+from .list import getUsers
+from .utilities import colors
+from .utilities import checkErrors
+from .utilities import makeColorMap
+from .utilities import printTable
+from .utilities import reverseMap
 
 def readMessages(token, channel, count='10', unread=False):
     #Check whether to read channel or IM and use appropriate method

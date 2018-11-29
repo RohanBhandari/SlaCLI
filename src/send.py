@@ -1,5 +1,5 @@
 import requests
-from utilities import checkErrors
+from .utilities import checkErrors
 
 def sendFile(token, channel, message, file):
     files={'file':open(file,'rb')}

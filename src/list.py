@@ -1,7 +1,7 @@
 import requests
-from utilities import checkErrors
-from utilities import colors
-from utilities import printTable
+from .utilities import checkErrors
+from .utilities import colors
+from .utilities import printTable
 
 def getChannels(token, verbose=True):
     payload={'token':token, 'exclude_archived':'1'}
@@ -42,6 +42,9 @@ def getUsers(token, verbose=True):
     info.append(['=== Username ===', '=== Name ===', '=== Presence ==='])
     userMap = dict()
     for i in range(len(data['members'])-1):
+        if 'real_name' not in data['members'][i]:
+            data['members'][i]['real_name'] = ''
+
         info.append(['@'+data['members'][i]['name'], data['members'][i]['real_name'], data['members'][i]['presence']])
         userMap['@'+data['members'][i]['name']] = data['members'][i]['id']
     userMap['BOT'] = 'BOT'

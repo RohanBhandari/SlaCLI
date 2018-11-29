@@ -17,7 +17,7 @@ class colors:
 def printTable(info, header=True):
 
     row_format = ''
-    zippedInfo = zip(*info)
+    zippedInfo = list(zip(*info))
     for row in range(len(zippedInfo)):
         # Added extra buffer of 5 spaces
         row_format += '{:<'+str(len(max(zippedInfo[row],key=len))+5)+'}' if row != len(zippedInfo)-1 else '{:<}'
@@ -43,7 +43,7 @@ def reverseMap(map):
     return reversedMap
 
 def makeColorMap(map):    
-    colorMap = {map.keys()[i] : colors.list[i % len(colors.list)] for i in range(len(map.keys()))}
+    colorMap = {list(map.keys())[i] : colors.list[i % len(colors.list)] for i in range(len(map.keys()))}
     return colorMap
 
 def checkErrors(error):
